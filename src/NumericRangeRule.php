@@ -77,4 +77,15 @@ class NumericRangeRule
     ): self {
         return new self($min, $max, true, true);
     }
+
+    /**
+     * @param numeric $min
+     * @param numeric $max
+     */
+    public static function createBetweenExclusive(
+        $min,
+        $max
+    ): self {
+        return new self($min, $max, false, false);
+    }
 }
