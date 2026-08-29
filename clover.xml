@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1788007530">
-  <project timestamp="1788007530">
+<coverage generated="1788007837">
+  <project timestamp="1788007837">
     <file name="/home/runner/work/numeric-range-rule/numeric-range-rule/src/NumericRangeRule.php">
       <class name="Aegisora\Rules\NumericRangeRule" namespace="global">
         <metrics complexity="29" methods="13" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="38" coveredstatements="38" elements="51" coveredelements="51"/>
