@@ -25,8 +25,7 @@ class NumericRangeRule extends Rule
     /**
      * @param numeric|null $min
      * @param numeric|null $max
-     * @param bool $minInclusive
-     * @param bool $maxInclusive
+     * @throws InvalidRuleContextException
      */
     private function __construct(
         $min,
@@ -34,6 +33,10 @@ class NumericRangeRule extends Rule
         bool $minInclusive,
         bool $maxInclusive
     ) {
+        $this->validateBound($min);
+        $this->validateBound($max);
+        $this->validateRange($min, $max, $minInclusive, $maxInclusive);
+
         $this->min = $min;
         $this->max = $max;
         $this->minInclusive = $minInclusive;
@@ -42,6 +45,7 @@ class NumericRangeRule extends Rule
 
     /**
      * @param numeric $length
+     * @throws InvalidRuleContextException
      */
     public static function createGreaterThan($length): self
     {
@@ -50,6 +54,7 @@ class NumericRangeRule extends Rule
 
     /**
      * @param numeric $length
+     * @throws InvalidRuleContextException
      */
     public static function createGreaterThanOrEqualTo($length): self
     {
@@ -58,6 +63,7 @@ class NumericRangeRule extends Rule
 
     /**
      * @param numeric $length
+     * @throws InvalidRuleContextException
      */
     public static function createLessThan($length): self
     {
@@ -66,6 +72,7 @@ class NumericRangeRule extends Rule
 
     /**
      * @param numeric $length
+     * @throws InvalidRuleContextException
      */
     public static function createLessThanOrEqualTo($length): self
     {
@@ -75,6 +82,7 @@ class NumericRangeRule extends Rule
     /**
      * @param numeric $min
      * @param numeric $max
+     * @throws InvalidRuleContextException
      */
     public static function createBetween(
         $min,
@@ -86,6 +94,7 @@ class NumericRangeRule extends Rule
     /**
      * @param numeric $min
      * @param numeric $max
+     * @throws InvalidRuleContextException
      */
     public static function createBetweenExclusive(
         $min,
@@ -97,6 +106,7 @@ class NumericRangeRule extends Rule
     /**
      * @param numeric $min
      * @param numeric $max
+     * @throws InvalidRuleContextException
      */
     public static function createBetweenMinExclusive(
         $min,
@@ -108,6 +118,7 @@ class NumericRangeRule extends Rule
     /**
      * @param numeric $min
      * @param numeric $max
+     * @throws InvalidRuleContextException
      */
     public static function createBetweenMaxExclusive(
         $min,
@@ -123,8 +134,6 @@ class NumericRangeRule extends Rule
         if (!is_numeric($value)) {
             throw new InvalidRuleContextException();
         }
-
-        $this->validateRangeValues();
 
         return $this->isSatisfiedBy($value) ?
             $this->getDefaultValidResult() :
@@ -156,20 +165,37 @@ class NumericRangeRule extends Rule
     }
 
     /**
+     * @param numeric|null $bound
      * @throws InvalidRuleContextException
      */
-    private function validateRangeValues(): void
+    private function validateBound($bound): void
     {
-        if ($this->min !== null) {
-            if (!is_numeric($this->min)) {
-                throw new InvalidRuleContextException();
-            }
+        if ($bound !== null && !is_numeric($bound)) {
+            throw new InvalidRuleContextException();
+        }
+    }
+
+    /**
+     * @param numeric|null $min
+     * @param numeric|null $max
+     * @throws InvalidRuleContextException
+     */
+    private function validateRange(
+        $min,
+        $max,
+        bool $minInclusive,
+        bool $maxInclusive
+    ): void {
+        if ($min === null || $max === null) {
+            return;
         }
 
-        if ($this->max !== null) {
-            if (!is_numeric($this->max)) {
-                throw new InvalidRuleContextException();
-            }
+        if ($min > $max) {
+            throw new InvalidRuleContextException();
+        }
+
+        if ($min == $max && !($minInclusive && $maxInclusive)) {
+            throw new InvalidRuleContextException();
         }
     }
 }
