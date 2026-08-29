@@ -1,8 +1,21 @@
 {
     "name": "aegisora/numeric-range-rule",
-    "description": "<REPOSITORY_DESCRIPTION>",
+    "description": "Numeric Range Rule provides a simple, rule-based numeric range validation implementation for the Aegisora ecosystem",
     "type": "library",
-    "keywords": ["php", "aegisora", "aegisora-ecosystem"],
+    "keywords": [
+        "php",
+        "aegisora",
+        "aegisora-ecosystem",
+        "rule",
+        "validation",
+        "validator",
+        "numeric",
+        "number",
+        "range",
+        "min",
+        "max",
+        "between"
+    ],
     "homepage": "https://github.com/Aegisora/numeric-range-rule",
     "support": {
         "issues": "https://github.com/Aegisora/numeric-range-rule/issues",
