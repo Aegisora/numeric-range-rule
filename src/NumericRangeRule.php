@@ -66,4 +66,15 @@ class NumericRangeRule
     {
         return new self(null, $length, false, true);
     }
+
+    /**
+     * @param numeric $min
+     * @param numeric $max
+     */
+    public static function createBetween(
+        int $min,
+        int $max
+    ): self {
+        return new self($min, $max, true, true);
+    }
 }
