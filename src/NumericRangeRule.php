@@ -44,39 +44,39 @@ class NumericRangeRule extends Rule
     }
 
     /**
-     * @param numeric $length
+     * @param numeric $min
      * @throws InvalidRuleContextException
      */
-    public static function createGreaterThan($length): self
+    public static function createGreaterThan($min): self
     {
-        return new self($length, null, false, false);
+        return new self($min, null, false, false);
     }
 
     /**
-     * @param numeric $length
+     * @param numeric $min
      * @throws InvalidRuleContextException
      */
-    public static function createGreaterThanOrEqualTo($length): self
+    public static function createGreaterThanOrEqualTo($min): self
     {
-        return new self($length, null, true, false);
+        return new self($min, null, true, false);
     }
 
     /**
-     * @param numeric $length
+     * @param numeric $max
      * @throws InvalidRuleContextException
      */
-    public static function createLessThan($length): self
+    public static function createLessThan($max): self
     {
-        return new self(null, $length, false, false);
+        return new self(null, $max, false, false);
     }
 
     /**
-     * @param numeric $length
+     * @param numeric $max
      * @throws InvalidRuleContextException
      */
-    public static function createLessThanOrEqualTo($length): self
+    public static function createLessThanOrEqualTo($max): self
     {
-        return new self(null, $length, false, true);
+        return new self(null, $max, false, true);
     }
 
     /**
