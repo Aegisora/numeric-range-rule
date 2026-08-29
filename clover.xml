@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1788004985">
-  <project timestamp="1788004985">
+<coverage generated="1788005269">
+  <project timestamp="1788005269">
     <file name="/home/runner/work/numeric-range-rule/numeric-range-rule/src/NumericRangeRule.php">
       <class name="Aegisora\Rules\NumericRangeRule" namespace="global">
-        <metrics complexity="3" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="9" coveredelements="0"/>
+        <metrics complexity="9" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="0" elements="21" coveredelements="0"/>
       </class>
       <line num="26" type="method" name="__construct" visibility="private" complexity="1" crap="2" count="0"/>
       <line num="32" type="stmt" count="0"/>
@@ -14,8 +14,20 @@
       <line num="43" type="stmt" count="0"/>
       <line num="49" type="method" name="createGreaterThanOrEqualTo" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="51" type="stmt" count="0"/>
-      <metrics loc="54" ncloc="36" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="9" coveredelements="0"/>
+      <line num="57" type="method" name="createLessThan" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="59" type="stmt" count="0"/>
+      <line num="65" type="method" name="createLessThanOrEqualTo" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="67" type="stmt" count="0"/>
+      <line num="74" type="method" name="createBetween" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="78" type="stmt" count="0"/>
+      <line num="85" type="method" name="createBetweenExclusive" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="89" type="stmt" count="0"/>
+      <line num="96" type="method" name="createBetweenMinExclusive" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="100" type="stmt" count="0"/>
+      <line num="107" type="method" name="createBetweenMaxExclusive" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="111" type="stmt" count="0"/>
+      <metrics loc="114" ncloc="74" classes="1" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="0" elements="21" coveredelements="0"/>
     </file>
-    <metrics files="1" loc="54" ncloc="36" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="9" coveredelements="0"/>
+    <metrics files="1" loc="114" ncloc="74" classes="1" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="0" elements="21" coveredelements="0"/>
   </project>
 </coverage>
