@@ -50,4 +50,12 @@ class NumericRangeRule
     {
         return new self($length, null, true, false);
     }
+
+    /**
+     * @param numeric $length
+     */
+    public static function createLessThan($length): self
+    {
+        return new self(null, $length, false, false);
+    }
 }
