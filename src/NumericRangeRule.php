@@ -42,4 +42,12 @@ class NumericRangeRule
     {
         return new self($length, null, false, false);
     }
+
+    /**
+     * @param numeric $length
+     */
+    public static function createGreaterThanOrEqualTo($length): self
+    {
+        return new self($length, null, true, false);
+    }
 }
