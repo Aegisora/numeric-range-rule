@@ -2,7 +2,12 @@
 
 namespace Aegisora\Rules;
 
-class NumericRangeRule
+use Aegisora\RuleContract\Exceptions\InvalidRuleContextException;
+use Aegisora\RuleContract\Models\Context;
+use Aegisora\RuleContract\Models\Result;
+use Aegisora\RuleContract\Rule;
+
+class NumericRangeRule extends Rule
 {
     /**
      * @var numeric|null
@@ -12,7 +17,7 @@ class NumericRangeRule
     /**
      * @var numeric|null
      */
-    private ?int $max;
+    private $max;
 
     private bool $minInclusive;
     private bool $maxInclusive;
@@ -72,8 +77,8 @@ class NumericRangeRule
      * @param numeric $max
      */
     public static function createBetween(
-        int $min,
-        int $max
+        $min,
+        $max
     ): self {
         return new self($min, $max, true, true);
     }
@@ -109,5 +114,62 @@ class NumericRangeRule
         $max
     ): self {
         return new self($min, $max, true, false);
+    }
+
+    protected function executeValidate(Context $context): Result
+    {
+        $value = $context->getValue();
+
+        if (!is_numeric($value)) {
+            throw new InvalidRuleContextException();
+        }
+
+        $this->validateRangeValues();
+
+        return $this->isSatisfiedBy($value) ?
+            $this->getDefaultValidResult() :
+            $this->getDefaultInvalidResult();
+    }
+
+    /**
+     * @param numeric $length
+     */
+    private function isSatisfiedBy($length): bool
+    {
+        if (!is_null($this->min)) {
+            $satisfiesMin = $this->minInclusive ? ($length >= $this->min) : ($length > $this->min);
+
+            if (!$satisfiesMin) {
+                return false;
+            }
+        }
+
+        if (!is_null($this->max)) {
+            $satisfiesMax = $this->maxInclusive ? ($length <= $this->max) : ($length < $this->max);
+
+            if (!$satisfiesMax) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * @throws InvalidRuleContextException
+     */
+    private function validateRangeValues(): void
+    {
+        if ($this->min !== null) {
+            if (!is_numeric($this->min)) {
+                throw new InvalidRuleContextException();
+            }
+        }
+
+        if ($this->max !== null) {
+            if (!is_numeric($this->max)) {
+                throw new InvalidRuleContextException();
+            }
+        }
     }
 }
