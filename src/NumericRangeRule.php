@@ -34,4 +34,12 @@ class NumericRangeRule
         $this->minInclusive = $minInclusive;
         $this->maxInclusive = $maxInclusive;
     }
+
+    /**
+     * @param numeric $length
+     */
+    public static function createGreaterThan($length): self
+    {
+        return new self($length, null, false, false);
+    }
 }
